@@ -1,0 +1,9 @@
+*.cmd
+/is-ci
+/semver
+/mime
+/json-server.ps1
+*.ps1
+/json-server
+/rc
+/node_modules
