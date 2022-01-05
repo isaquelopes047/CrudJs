@@ -38,5 +38,4 @@ http.send();
     data.forEach(elemento => {
         tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email))
     });
-}
 
