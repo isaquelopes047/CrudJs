@@ -1,11 +1,10 @@
 
-
 const criarNovaLinha = (nome, email) => {
     const linhaNovoCliente = document.createElement('tr');
 
-
     // Colocamos o conteudo a ser criado dentro de uma constante
-    const conteudo = `
+    const conteudo = 
+    `
     <td class="td" data-td>${nome}</td>
     <td>${email}</td>
     <td>
@@ -26,17 +25,17 @@ const tabela = document.querySelector('[data-tabela]')
 
 // cria uma nova requisição
 const http = new XMLHttpRequest()
-const url = "http://localhost:3000/profile";
+const url = "http://localhost:3000/profile"
 
 // GET vai pegar as informaçoes do profile 
 // Dados do arquivo db.json - profile
 http.open('GET', url); 
 http.send();
 
-// Vi apresentar as informaçoes na aplicação fronthttp.onload = () => {
-    const data = JSON.parse(http.response)
+// Vi apresentar as informaçoes na aplicação front
+http.onload = () => { // a função sera executada emediatamento ao carregar pagina
+    const data = JSON.parse(http.response) 
     data.forEach(elemento => {
         tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email))
     });
 }
-
