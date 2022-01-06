@@ -1,4 +1,4 @@
-import { clienteService } from "../service/cliente-service";
+import { clienteService } from "../service/cliente-service.js";
 
 const criarNovaLinha = (nome, email) => {
     const linhaNovoCliente = document.createElement('tr');
@@ -19,8 +19,8 @@ const criarNovaLinha = (nome, email) => {
     linhaNovoCliente.innerHTML = conteudo;
     return linhaNovoCliente
 }
-const tabela = document.querySelector('[data-tabela]')
 
+const tabela = document.querySelector('[data-tabela]')
 
 clienteService.listaDeCliente() //somente quando a promisse ser aceita ele exibe os dados
 .then(data => {
