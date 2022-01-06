@@ -32,16 +32,21 @@ const listaDeCliente = () => {
         http.send();
 
         http.onload = () => {
-            const data = JSON.parse(http.response) 
-            data.forEach(elemento => {
-                tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email))
-            });
+            if(http.status >= 400){
+                reject(JSON.parse(http.response))
+            }else{
+                resolve(JSON.parse(http.response))
+            }
         }
     })
-
-// Vai apresentar as informaçoes na aplicação fronthttp.onload = () => {
-    const data = JSON.parse(http.response)
-    data.forEach(elemento => {
-        tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email))
-    });
+    console.log(promise)
+    return promise
 }
+
+listaDeCliente()
+.then(data => {
+        data.forEach(elemento => {
+        tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email))
+        });
+});
+
