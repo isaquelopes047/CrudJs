@@ -1,6 +1,6 @@
 import { clienteService } from "../service/cliente-service.js";
 
-const criarNovaLinha = (nome, email) => {
+const criarNovaLinha = (nome, email, id) => {
     const linhaNovoCliente = document.createElement('tr');
 
     // Colocamos o conteudo a ser criado dentro de uma constante
@@ -17,14 +17,28 @@ const criarNovaLinha = (nome, email) => {
     `
     // Pegamos a const criada acima e passamos a ela a const conteudo e exibimos com o innerHTML
     linhaNovoCliente.innerHTML = conteudo;
+    linhaNovoCliente.dataset.id = id
     return linhaNovoCliente
 }
 
 const tabela = document.querySelector('[data-tabela]')
 
+tabela.addEventListener('click', (evento) => {
+    let botaoDeletar = evento.target.className ==
+    'botao-simples botao-simples--excluir'
+    if(botaoDeletar){
+        const linhaCliente = evento.target.closest('[data-id]')
+        let id = linhaCliente.dataset.id
+        clienteService.removeCliente(id)
+        .then( ()=> {
+            linhaCliente.remove()
+        })
+    }
+})
+
 clienteService.listaDeCliente() //somente quando a promisse ser aceita ele exibe os dados
 .then(data => {
         data.forEach(elemento => {
-            tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email))
+            tabela.appendChild(criarNovaLinha(elemento.nome, elemento.email, elemento.id))
         });
 })
