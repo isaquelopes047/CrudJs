@@ -9,3 +9,5 @@
 /node_modules
 /browser-sync
 /dev-ip
+/throttleproxy
+/lt
