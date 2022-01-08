@@ -27,12 +27,17 @@ tabela.addEventListener('click', (evento) => {
     let botaoDeletar = evento.target.className ==
     'botao-simples botao-simples--excluir'
     if(botaoDeletar){
-        const linhaCliente = evento.target.closest('[data-id]')
-        let id = linhaCliente.dataset.id
-        clienteService.removeCliente(id)
-        .then( ()=> {
-            linhaCliente.remove()
-        })
+        try{
+            const linhaCliente = evento.target.closest('[data-id]')
+            let id = linhaCliente.dataset.id
+            clienteService.removeCliente(id)
+            .then( ()=> {
+                linhaCliente.remove()
+            })
+        }catch(erro){
+            console.log(erro)
+            window.location.href = '../telas/erro.html'
+        }
     }
 })
 
